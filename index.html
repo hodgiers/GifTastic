@@ -11,27 +11,25 @@
 </head>
 
 <body>
-<!-- BEGIN: jQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- End: jQuery-->
 
 <!-- BEGIN: Button Layout -->
 <div class="container">
-
 	<div class="row marginadd" id="buttons">
-		<button type="button" class="btn btn-default">Button</button>
-		<button type="button" class="btn btn-default">Button</button>
-		<button type="button" class="btn btn-default">Button</button>
-		<button type="button" class="btn btn-default">Button</button>
-		<button type="button" class="btn btn-default">Button</button>
-		<button type="button" class="btn btn-default">Button</button>
 
+<!--
+
+		<button type="button" class="btn btn-default">Button</button>
+		<button type="button" class="btn btn-default">Button</button>
+		<button type="button" class="btn btn-default">Button</button>
+		<button type="button" class="btn btn-default">Button</button>
+		<button type="button" class="btn btn-default">Button</button>
+		<button type="button" class="btn btn-default">Button</button>
+-->
 	</div>
-
 
 <!-- BEGIN: Giphy Image Panels -->
 <div class="row marginadd">
-	<div class="col-md-8">
+	<div class="col-md-8" id="giphyPane">
 	<div class="panel panel-body">
 		<div class="panel-heading">
 			<h3 class="panel-title text-left">Anchor for Giphy Images</h3>
@@ -47,7 +45,7 @@
 				<label class="sr-only" for="AddingAnimals">Animal</label>
 				<div class="input-group">
 <!-- 				<div class="input-group-addon">$</div> -->
-					<input type="text" class="form-control" id="AnimalAdd" placeholder="Animal">
+					<input type="text" class="form-control" id="topicAdd" placeholder="Animal">
 <!--				<div class="input-group-addon">.00</div> -->
 				</div>
 			</div>
@@ -65,13 +63,13 @@
 </div>
 
 </body>
+<!-- BEGIN: jQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- End: jQuery-->
 
 <!-- BEGIN: Javscript -->
 <script src="assets/javascript/app.js"></script>
+<script type="text/javascript" src='assets/javascript/config.js'></script>
 <!-- End: Javscript -->
 
 </html>
-
-
-
-
