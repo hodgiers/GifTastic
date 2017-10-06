@@ -12,7 +12,7 @@ var secretKey = config.giphyKey;
 //Taking 'topics array' looping through it and creating individual buttons from each item
 
 topics.forEach(function(item) {
-    var gifButton = $("<button>").attr( {'class': 'carButton btn-large', 'data-input': item}).html(item);
+    var gifButton = $("<button>").attr( {'class': 'techButton btn-large', 'data-input': item}).html(item);
     gifButton.appendTo("#buttons");
     console.log(item);
 
@@ -20,27 +20,33 @@ topics.forEach(function(item) {
 
 
 //Begin: Take new input
-$('#moreTopics').click(function() {
+
+//When user clicks the submit button do the following:
+$('#clickAdd').click(function() {
   event.preventDefault();
 
-  var topicAdd = $('#topicAdd').val();
-  var inputGifButton = $('<button>').attr({'class' : 'techButton btn-large', 'data-input': topicAdd}).html(newCar);
-  inputGifButton.appendTo(".button-field");
+
+//Take the value of what the user inputs into the text box
+//create a new button and append it to the #buttons div
+  var topicAdd = $('#newTopic').val();
+  var inputGifButton = $('<button>').attr({'class' : 'techButton btn-large', 'data-input': topicAdd}).html(topicAdd);
+  inputGifButton.appendTo("#buttons");
   console.log(topicAdd);
+
 //End: Take new input
 
-// clear input
-  $("#topicAdd").val("");
+// clear text box once the value has been taken from it
+  $("#newTopic").val("");
 
 });
+
+//When the button is clicked, do the following:
 
 $(document.body).on("click", ".techButton", function() {
     var a = $(this).attr('data-input');
     apiCall(a);
 });
 
-//When user clicks a button, page should grab 10 static, non-animated gif images from the
-//Giphy api and place them on the page.
 
 function apiCall(a) {
 
@@ -55,9 +61,35 @@ function apiCall(a) {
         console.log(response)
         var data = response.data;
         console.log(data);
-        $(".gif-field").empty();
+        $("#giphyPane").empty();
+
+        for (var i =0; i < data.length; i++){
+            var stillImg = data[i].images.fixed_height_still.url;
+            var animateImg = data[i].images.fixed_height.url;
+            var rating = data[i].rating;
+
+            var newDiv = $('<div class="newDiv">')
+            newDiv.append($('<div class="rating">').text(rating));
+            var gif = $('<img>').attr({'class': 'techImg', 'data-still': stillImg, 'data-animate': animateImg, 'data-state': 'still', 'src': stillImg});
+            newDiv.append(gif);
+            $('#giphyPane').append(newDiv);
+        }
+      })
+    };
+
+    $(document).on("click", ".techImg", function () {
+        var state = $(this).attr("data-state");
+            if (state === "still") {
+                $(this).attr("src", $(this).attr("data-animate"));
+                $(this).attr("data-state", "animate");
+            }
+            else {
+                $(this).attr("src", $(this).attr("data-still"));
+                $(this).attr("data-state", "still");
+            }
 
 
+    });
 
 
 
